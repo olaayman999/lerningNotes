@@ -181,4 +181,4 @@ For example, if a tester is attempting to identify SQL Injection vulnerabilities
 
 This highlights the importance of proper planning, preparation, and testing methodologies when performing security assessments. It's critical to have a clear understanding of the testing scope, to validate testing methodology and inputs, and to have proper backups in place to minimize the risk of accidental data loss.
 
-Additionally, it's a good practice to test in a safe and controlled environment, such as a development or staging environment, to minimize the risk of impacting production systems and data.
+Additionally, it's a good practice to test in a safe and controlled environment, such as a development or staging environment, to minimize the risk of impacting production systems and data
