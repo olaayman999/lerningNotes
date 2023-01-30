@@ -57,3 +57,47 @@ Threat intelligence can include information such as:
 6. Emerging trends in cybercrime and hacking communities
 
 Threat intelligence can come from a variety of sources, including security vendors, government agencies, open-source intelligence, and industry-specific intelligence providers. Organizations can use threat intelligence to improve their overall security posture and make informed decisions about how to allocate their security resources.
+
+## SQL injection types
+
+1. Classic SQL Injection: This is the most common type of SQL injection, where the attacker exploits a vulnerability in the application to inject malicious SQL code into an application's SQL statement.
+
+2. Blind SQL Injection: In this type of SQL injection, the attacker is not able to see the results of their injection directly. Instead, they must make guesses and observations based on the behavior of the application.
+
+the difference between classic and blind SQL Injection lies in the visibility of the results of the injected payload. Classic SQL Injection provides the attacker with the ability to see the results, while Blind SQL Injection does not.
+
+3. Union-Based SQL Injection: This type of SQL injection involves using the UNION operator to combine the results of multiple SQL statements into a single result set.
+
+4. Error-Based SQL Injection: In this type of SQL injection, the attacker exploits errors in the application to extract information from the database.
+
+5. Inferential SQL Injection: Also known as Time-Based SQL Injection, this type of attack involves sending a carefully crafted SQL statement to the database that takes a long time to execute. The attacker can then use the time difference between a normal response and a slow response to determine whether the injection was successful.
+
+6. Stored SQL Injection: In this type of SQL injection, the attacker injects malicious SQL code into the database that is stored and executed whenever the vulnerable page is loaded.
+
+7. Second-Order SQL Injection: This type of SQL injection occurs when the attacker is able to inject malicious SQL code into a database, and then wait for that code to be executed later by another user.
+
+It's important to note that SQL injection attacks can have serious consequences, including data theft, data manipulation, and server compromise. To prevent these attacks, developers should validate user input, sanitize user input, and use parameterized queries to separate SQL statements from user input.
+
+## what is the difference between Second-Order SQL Injection and stored
+
+Second-Order SQL Injection: In this type of attack, the attacker's payload is stored in the database, and is executed later. This can happen when user input is stored in the database and used in a subsequent query.
+
+Stored SQL Injection: This type of attack is similar to Second-Order SQL Injection, but the payload is stored permanently in the database. This allows the attacker to execute the payload every time the vulnerable page is accessed.
+
+In summary, Second-Order SQL Injection and Stored SQL Injection both involve storing the attacker's payload in the database, but Stored SQL Injection involves a permanent storage of the payload.
+
+## How to prevent SQL injection
+Most instances of SQL injection can be prevented by using parameterized queries (also known as prepared statements) instead of string concatenation within the query.
+
+The following code is vulnerable to SQL injection because the user input is concatenated directly into the query:
+```sql
+String query = "SELECT * FROM products WHERE category = '"+ input + "'";
+Statement statement = connection.createStatement();
+ResultSet resultSet = statement.executeQuery(query);
+```
+This code can be easily rewritten in a way that prevents the user input from interfering with the query structure:
+```sql
+PreparedStatement statement = connection.prepareStatement("SELECT * FROM products WHERE category = ?");
+statement.setString(1, input);
+ResultSet resultSet = statement.executeQuery();
+```
