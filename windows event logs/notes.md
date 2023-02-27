@@ -5,8 +5,7 @@ Logs are records of events that happen on your computer, either by a person or b
 Windows Event Viewer displays the Windows event logs. Use this application to view and navigate the logs, search and filter particular types of logs, export logs for analysis, and more. 
 
 
-
-Description-critical event ids- explain id and important files- why is it important- usecases- map to mitre tactics
+Description-critical event ids- parameters - explain id and important files- why is it important- usecases- map to mitre tactics
 
 
 Event Log Categories:
@@ -62,3 +61,6 @@ An event that describes the successful completion of an audited security event. 
 5. Failure Audit (Security log)	
 
 An event that describes an audited security event that did not complete successfully. For example, a Failure Audit may be logged when a user cannot access a network drive.
+
+
+https://www.kaspersky.com/resource-center/definitions/replay-attack
