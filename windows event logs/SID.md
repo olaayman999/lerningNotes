@@ -60,3 +60,19 @@ There are several different levels of access that can be granted to a registry k
 When a user or group is granted access to a key, their Security Identifier (SID) is added to the _access control list (ACL) for that key._ Windows checks the ACL whenever a user or group attempts to access the key, and it grants or denies access based on the permissions specified in the ACL.
 
 Overall, having access to a key in the Windows Registry allows a user or group to view or modify important system settings and configuration information, making it a critical aspect of Windows administration and management.
+
+--------------------------------------------
+
+https://renenyffenegger.ch/notes/Windows/security/SID/index#well-known-sids
+
+Here's an example of a Security Identifier (SID) format in Windows:
+```
+S-1-5-21-3623811015-3361044348-30300820-1013
+```
+This SID consists of several parts that provide information about the account it represents:
+
+- The `S` indicates that this is a SID.
+- The `1` indicates the revision level of the SID format.
+- The `5` identifies the identifier authority that issued the SID. In this case, it is the well-known security identifier authority (SIDAuthorityNT).
+- The `21-3623811015-3361044348-30300820` is the identifier assigned by the authority to identify a specific account or group.
+- The `1013` is a relative identifier (RID) that identifies a unique account or group within a domain or local computer.
