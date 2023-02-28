@@ -30,10 +30,113 @@ The amount of disk space required for each event log record includes the members
 
 The following are the major elements used in event logging:
 
-Eventlog key
-Event sources
-Event categories
-Event identifiers
-Message files
-Event log records
-Event data
+- Eventlog key
+- Event sources
+- Event categories
+- Event identifiers 
+- Message files
+- Event log records
+- Event data
+
+
+## EventLog Key
+
+![image](https://user-images.githubusercontent.com/72671239/221772366-010d0fe1-29b4-474a-876d-e786b76161fe.png)
+
+Note that domain controllers record events in the Directory service and File Replication service logs and DNS servers record events in the DNS server.
+
+The event logging service uses the information stored in the Eventlog registry key. The Eventlog key contains several subkeys, called logs. Each log contains information that the event logging service uses to locate resources when an application writes to and reads from the event log.
+
+In the Windows Event Log service, each log is like a separate folder that contains specific types of events and system messages. The EventLog registry key has several subkeys that represent these logs, such as the Application, System, and Security logs.
+
+When an application wants to log an event or system message, it uses the _Windows event logging APIs_ to write to a specific log. For example, if an error occurs in a Windows system component, it may be logged in the System log. If an application encounters an error, it may log an event in the Application log.
+
+The event logging service uses the information in the registry subkeys to locate the appropriate log when an application writes to or reads from the event log. Each log has specific settings, such as the maximum size of the log, how to handle events when the log is full, and whether to archive the log.
+
+By separating events and system messages into different logs, system administrators can more easily filter and manage the information in the logs. For example, they can focus on the events in the System log to troubleshoot hardware or system-related issues, or they can focus on the Application log to troubleshoot issues with specific applications.
+
+The EventLog registry key is like a settings file that tells the Windows Event Log service how to log events and system messages. It has information about how big the logs can be, when to overwrite old events, and whether to archive old logs. This registry key is usually managed by system administrators and should not be changed by regular users because it can affect the stability and performance of the system.
+
+```
+HKEY_LOCAL_MACHINE               =>  hardware, software, and user settings on the computer.
+   SYSTEM                        => operating system, system drivers, and other system components.
+      CurrentControlSet          => current hardware and system configuration
+         Services                => system services installed
+            Eventlog             => configuration of the Windows Event Log service
+               Application       => logs
+               Security          => logs
+               System            => logs
+               CustomLog         => logs
+               
+```
+This is a representation of the Windows Registry hierarchy. It shows the location of the `Eventlog` subkey under the `Services` subkey in the `CurrentControlSet` subkey of the `SYSTEM` subkey under `HKEY_LOCAL_MACHINE`.
+
+1. `HKEY_LOCAL_MACHINE` is the top-level key in the Windows Registry, which contains information about hardware, software, and user settings on the computer.
+2. `SYSTEM` is a subkey under` HKEY_LOCAL_MACHINE` that contains information about the operating system, system drivers, and other system components.
+3. `CurrentControlSet` is a subkey under `SYSTEM` that contains information about the current hardware and system configuration.
+4. `Services` is a subkey under `CurrentControlSet` that contains information about the system services installed on the computer.
+5. `Eventlog` is a subkey under `Services` that contains information about the configuration of the Windows Event Log service, including the settings for each log.
+6. `Application`, `Security`, `System`, and `CustomLog` are subkeys under `Eventlog` that represent the different logs that can be created by the Windows Event Log service, each with their own settings and events.
+
+By navigating to this part of the Windows Registry, system administrators can view and modify the settings for the Windows Event Log service, including the settings for each log, such as the maximum log size, retention policy, and security settings. This can help them troubleshoot issues, monitor system activity, and manage the logs more effectively.
+
+The Windows Registry is organized in a hierarchical structure with multiple levels of keys and subkeys. Here is the full hierarchy of the Windows Registry:
+```
+HKEY_CLASSES_ROOT (HKCR)
+  .exe
+  .dll
+  AppID
+  CLSID
+  Interface
+  TypeLib
+  MIME
+  Extensions
+  
+HKEY_CURRENT_USER (HKCU)
+  Control Panel
+  Desktop
+  Environment
+  Keyboard Layout
+  Network
+  Printers
+  Software
+  System
+  Volatile Environment
+  
+HKEY_LOCAL_MACHINE (HKLM)
+  BCDEdit
+  Hardware
+  SAM
+  Security
+  Software
+  System
+    ControlSet00x
+      Enum
+      Services
+        Eventlog
+          Application
+          Security
+          System
+          CustomLog
+          
+HKEY_USERS (HKU)
+  .DEFAULT
+  S-1-5-xx
+    Control Panel
+    Environment
+    Keyboard Layout
+    Network
+    Printers
+    Software
+    System
+    Volatile Environment
+    
+HKEY_CURRENT_CONFIG (HKCC)
+  Hardware Profiles
+  Software
+```
+Each key in the registry hierarchy contains multiple subkeys and values, which hold configuration settings, preferences, and other system information. System administrators can modify these keys and values to customize the behavior and settings of the Windows operating system and the applications running on it.
+
+-----------------------------
+
+## Event Sources
