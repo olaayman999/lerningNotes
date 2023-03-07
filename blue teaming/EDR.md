@@ -7,6 +7,9 @@ EDR record the activities and events taking place on endpoints and all workloads
 An EDR tool should offer advanced threat detection, investigation and response capabilities — including incident data search and investigation alert triage, suspicious activity validation, threat hunting, and malicious activity detection and containment.
 
 ## EDR
+
+![image](https://user-images.githubusercontent.com/72671239/223514974-447ef5c2-6c83-47bd-a5c5-2f1ce53ea3d0.png)
+
 Some of the core components of an EDR include:
 
 1. **Data Enrichment**: Individual alerts or event notifications from a single source could indicate a true threat or a benign anomaly. EDR security aggregate and analyze data from multiple sources, providing additional context for identifying potential threats.
@@ -23,6 +26,9 @@ Examples of IOAs that EDR solutions may look for include:
 
 By monitoring endpoints for these and other IOAs, EDR solutions can quickly detect and respond to potential threats before they cause significant damage or disruption.
 
+![image](https://user-images.githubusercontent.com/72671239/223514571-707a5cd9-78f9-4d13-8b1c-92a0564ee3a2.png)
+
+
 2. **Alert Triage**: Alert overload is a common challenge for security teams, and many alerts are false positives. Based on context derived from multiple data sources, EDR can triage alerts, prioritizing the most likely and critical threats.
 
 3. **Threat Hunting Support**: EDR solutions are designed to collect and analyze a large amount of endpoint security data. By providing this data to a security analyst, they can help with identifying undetected intrusions on corporate systems.
@@ -33,6 +39,7 @@ By monitoring endpoints for these and other IOAs, EDR solutions can quickly dete
 
 6. **Provides Real-Time and Historical Visibility**:Real-time visibility across all your endpoints allows you to view adversary activities, even as they attempt to breach your environment, and stop them immediately.
 
+![image](https://user-images.githubusercontent.com/72671239/223514704-8bb41b31-058d-4525-bb11-1a56cd810509.png)
 
 In essence, EDR solutions are designed to streamline and optimize threat detection and response on corporate endpoints. They accomplish this by automating the process of collecting, aggregating, and analyzing security data, providing greater endpoint visibility and context to analysts.
 
@@ -48,6 +55,9 @@ SIEM solutions accomplish their purpose via a four-step process with the followi
 4. Alert Generation: In the event that a SIEM identifies a security threat, it will generate an alert for the security team. The solution may also leverage integrations with bug trackers, ticket systems, and similar tools to streamline the incident remediation process.
 
 After the SIEM has completed its data collection and analytics, it has access to a rich pool of security data and threat intelligence. This data is then provided to a security analyst to optimize threat detection and response, threat hunting, post-incident forensics, and demonstrating regulatory compliance.
+
+![image](https://user-images.githubusercontent.com/72671239/223514804-82eec1cd-ea89-4e7a-a5db-4e9789c89fc4.png)
+
 
 ## EDR vs. SIEM
 EDR and SIEM are both corporate security solutions that focus on improving incident detection and response by improving security _visibility_ and _context_. They **both collect data from multiple sources, analyze it, generate alerts regarding potential threats, and provide analysts with access to a rich pool of security data for threat identification, threat hunting, and similar activities.** However, EDR and SIEM are distinct security tools.
