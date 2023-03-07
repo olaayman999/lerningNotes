@@ -10,9 +10,9 @@ An initialization vector is a pseudorandom fixed-size input used in encryption m
 
 If IV is unique for each message, it is called a nonce, which means that it can only be used once. A nonce should be unpredictable. It is also used to prevent attackers from decrypting all messages by guessing the IV. If you use a nonce, the same plaintext may be encrypted using the same key into different ciphertext.
 
-Block Cipher Operation Modes
+## Block Cipher Operation Modes
 The block cipher mode of operation defines the relationships between blocks encoded using the cipher. There are different modes that were created to make it more difficult for an attacker to guess the original content of the message.
 
-Electronic Code Book (ECB)
+## Electronic Code Book (ECB)
 When using ECB, each block of data is encrypted separately and they are then concatenated in the original order. Parallel processing is possible since blocks do not depend on one another. There is no need for an IV. The major problem of ECB is that if the same block of data is encrypted, it will always generate the same ciphertext. This makes it easier for the attacker to guess the original data based on repeating patterns.
 
