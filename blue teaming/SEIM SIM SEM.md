@@ -23,3 +23,12 @@ In summary, SEM is focused on real-time event monitoring and response, while SIM
 
 SIEM refers to technologies with some combination of SIM and SEM. Since these are already very similar, the broader umbrella term can be useful in describing modern security tools and resources. Again, the key is to differentiate the event monitoring from the general information monitoring. Another key way to distinguish these two is to look at SIM as a kind of long-term or broader process, where more diverse data sets may be analyzed in more methodical ways. SEM, by contrast, is again looking at the specific types of user events that may constitute red flags or tell administrators specific things about network activity.
 
+## what is siem agent
+
+A SIEM agent, also known as a log agent, is a software component that runs on a device or system to collect and forward log data to a SIEM system for analysis and correlation.
+
+SIEM agents are typically installed on servers, network devices, endpoints, and other sources of log data within an organization's network. The agent is configured to collect specific types of log data, such as system logs, network traffic logs, or application logs, depending on the organization's requirements.
+
+The agent can also perform various tasks, such as filtering and normalizing log data, compressing and encrypting log data, and forwarding log data to the SIEM system over a secure connection. The agent may also be configured to trigger alerts or actions based on specific log events or conditions.
+
+SIEM agents play a critical role in a SIEM solution by enabling the collection and analysis of log data from across an organization's network. This allows security teams to identify potential security threats and vulnerabilities, and to respond quickly to security incidents.
